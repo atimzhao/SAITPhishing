@@ -28,7 +28,6 @@ function loaded() {
     // for (var i = 0; i < helpLinks.length; i++) {
     //     helpLinks[i].setAttribute("target", "_blank");
     // }
-
     username.setAttribute("autocomplete", "off");
     password.setAttribute("autocomplete", "off");
     username.focus();

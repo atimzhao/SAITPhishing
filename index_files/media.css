@@ -284,7 +284,7 @@ fieldset {
     .wrapper {
         background-image: url(b-logo-480.png);
         width: 100%;
-        padding-top: 120px;
+        padding-top: 0px;
         border-top-width: 16px;
         -webkit-box-shadow: 0 10px 10px rgba(185, 193, 203, 0.5);
         -moz-box-shadow: 0 10px 10px rgba(185, 193, 203, 0.5);
@@ -349,7 +349,7 @@ fieldset {
         background-image: url(b-logo.png);
         width: 580px;
         border-top-width: 18px;
-        padding-top: 140px;
+        padding-top: 0px;
         -moz-border-radius-bottomleft: 10px;
         -webkit-border-bottom-left-radius: 100px;
         border-bottom-left-radius: 10px;

