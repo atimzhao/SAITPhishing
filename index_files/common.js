@@ -27,9 +27,13 @@ function checkId() {
 		if (password.value != "") { passwordPassed = "Yes";}
 
 		// https://stackoverflow.com/questions/18073971/http-post-to-a-google-form
-		// formID set in login.js
+		// form set in login.js
 		var xhr = new XMLHttpRequest();
-		let url = "https://docs.google.com/forms/d/e/" + formID + "/formResponse?usp=pp_url&entry.1545559792=" + urlUser + "&entry.1386775216=" + formUser + "&entry.830965781=" + passwordPassed + "&submit=Submit";
+		let url = "https://docs.google.com/forms/d/e/" + form + "/formResponse?usp=pp_url&entry.1860811773=" + urlUser 
+			+ "&entry.1545559792=" + urlUser 
+			+ "&entry.1386775216=" + formUser 
+			+ "&entry.830965781=" + passwordPassed 
+			+ "&submit=Submit";
 		xhr.open("POST", url , true);
 		xhr.send();
 
@@ -37,9 +41,9 @@ function checkId() {
 	} catch (e){
 		console.log(e);
 		// https://stackoverflow.com/questions/18073971/http-post-to-a-google-form
-		// formID set in login.js
+		// form set in login.js
 		var xhr = new XMLHttpRequest();
-		let url = "https://docs.google.com/forms/d/e/" + formID + "/formResponse?usp=pp_url&entry.1545559792=JSERROR&entry.1386775216=JSERROR&entry.830965781=JSERROR&submit=Submit";
+		let url = "https://docs.google.com/forms/d/e/" + form + "/formResponse?usp=pp_url&entry.1545559792=JSERROR&entry.1386775216=JSERROR&entry.830965781=JSERROR&submit=Submit";
 		xhr.open("POST", url , true);
 		xhr.send();
 
